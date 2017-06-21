@@ -1,0 +1,9 @@
+@import './../../public/sass/common/_utilities.scss';
+@import './../../public/sass/common/_common.scss';
+@import './../../public/sass/common/coolpad_app_variable.scss';
+@include global-reset;
+
+@mixin header-component{
+
+}
+@include header-component;

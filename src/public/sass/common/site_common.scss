@@ -1,0 +1,29 @@
+
+$font-family:"Helvetica Neue", Helvetica, "Microsoft YaHei";
+@mixin verticalAlign {
+    display: table-cell;
+    vertical-align:middle;
+    text-align:center;
+    *display: block;
+    *font-size: 175px;
+    *font-family:Arial;
+    img{
+        vertical-align:middle;
+    }
+}
+
+.hide{
+    display: none;
+}
+.show{
+    display: inline-block;
+}
+body{
+    font-family: $font-family !important;
+    overflow-x: hidden;
+}
+
+@keyframes setWidth{
+    0% {width: 0rem;}
+    100% {width: 6rem;}
+}

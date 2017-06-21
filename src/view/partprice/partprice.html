@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>配件价格</title>
+    <script>
+        !function (a, b) {
+            function c() {
+                var b = f.getBoundingClientRect().width;
+                b / i > 540 && (b = 540 * i);
+                var c = b / 10;
+                f.style.fontSize = c + "px", k.rem = a.rem = c
+            }
+
+            var d, e = a.document, f = e.documentElement, g = e.querySelector('meta[name="viewport"]'), h = e.querySelector('meta[name="flexible"]'), i = 0, j = 0, k = b.flexible || (b.flexible = {});
+            if (g) {
+                var l = g.getAttribute("content").match(/initial\-scale=([\d\.]+)/);
+                l && (j = parseFloat(l[1]), i = parseInt(1 / j))
+            } else if (h) {
+                var m = h.getAttribute("content");
+                if (m) {
+                    var n = m.match(/initial\-dpr=([\d\.]+)/), o = m.match(/maximum\-dpr=([\d\.]+)/);
+                    n && (i = parseFloat(n[1]), j = parseFloat((1 / i).toFixed(2))), o && (i = parseFloat(o[1]), j = parseFloat((1 / i).toFixed(2)))
+                }
+            }
+            if (!i && !j) {
+                var p = a.navigator.userAgent, q = (!!p.match(/android/gi), !!p.match(/iphone/gi)), r = q && !!p.match(/OS 9_3/), s = a.devicePixelRatio;
+                i = q && !r ? s >= 3 && (!i || i >= 3) ? 3 : s >= 2 && (!i || i >= 2) ? 2 : 1 : 1, j = 1 / i
+            }
+            if (f.setAttribute("data-dpr", i), !g) if (g = e.createElement("meta"), g.setAttribute("name", "viewport"), g.setAttribute("content", "initial-scale=" + j + ", maximum-scale=" + j + ", minimum-scale=" + j + ", user-scalable=no"), f.firstElementChild) f.firstElementChild.appendChild(g); else {
+                var t = e.createElement("div");
+                t.appendChild(g), e.write(t.innerHTML)
+            }
+            a.addEventListener("resize", function () {
+                clearTimeout(d), d = setTimeout(c, 300)
+            }, !1), a.addEventListener("pageshow", function (a) {
+                a.persisted && (clearTimeout(d), d = setTimeout(c, 300))
+            }, !1), "complete" === e.readyState ? e.body.style.fontSize = 12 * i + "px" : e.addEventListener("DOMContentLoaded", function () {
+                e.body.style.fontSize = 12 * i + "px"
+            }, !1), c(), k.dpr = a.dpr = i, k.refreshRem = c, k.rem2px = function (a) {
+                var b = parseFloat(a) * this.rem;
+                return "string" == typeof a && a.match(/rem$/) && (b += "px"), b
+            }, k.px2rem = function (a) {
+                var b = parseFloat(a) / this.rem;
+                return "string" == typeof a && a.match(/px$/) && (b += "rem"), b
+            }
+        }(window, window.lib || (window.lib = {}));
+    </script>
+</head>
+
+<body>
+    <div class="Header">
+        <h1 class="title-box">
+            <span class="back-icon">
+                <img src="static/app_service/zs_svg_back.png" alt="back-btn">
+            </span>
+            <span class="title-text">配件价格</span>
+            <!--<span class="search-btn">
+                <img src="static/app_service/search.png" alt="search-btn">
+            </span>-->
+        </h1>
+    </div>
+    <div class="container">
+        <div class="part-init-page">
+            <div class="banner-box">
+                <img class="banner-img" src="static/app_service/part_banner.jpg" alt="">
+            </div>
+            <p class="ex-txt">常用配件考价查询</p>
+            <div class="inps-box">
+                <div class="inp-item-box phone-type">
+                    <input type="text" placeholder="手机型号">
+                    <a class="inp-item-init init-phone-type" href="javascript:void(0)">COOL 1s (32G)</a>
+                </div>
+                <div class="inp-item-box verify-box">
+                    <input type="text" placeholder="输入验证码">
+                    <a class="inp-item-init init-verify-code" href="javascript:void(0)">
+                    <img src="static/app_service/check_img.jpg" alt="">
+                </a>
+                </div>
+                <div class="btn-box">
+                    <a class="btn select-btn" href="javascript:void(0)">查询</a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</body>
+
+</html>

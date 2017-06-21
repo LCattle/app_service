@@ -1,0 +1,183 @@
+@import './../common/_rem.scss';
+@import './../common/_utilities.scss';
+@import './../common/_common.scss';
+@import './../common/site_common.scss';
+@import './../common/coolpad_app_variable.scss';
+@include global-reset;
+
+@mixin app-partprict-page {
+    .Header{
+        height: 1.33rem;
+        background: $header-bg;
+        .title-box{
+            height: 1.33rem;
+            line-height: 1.33rem;
+            max-height: 1.33rem;
+        overflow: hidden;
+        }
+    }
+    .title-box span{
+        display: inline-block;
+        
+    }
+    .title-box{
+        .back-icon{
+            width: .933rem;
+            margin-left: .27rem;
+            text-align: center;
+            color: #fff;
+            @include font-dpr(18px, 1.33rem - .24rem);
+            float: left;
+            overflow: hidden;
+            padding-top: .24rem;
+            img {
+                width: 90%;
+                height: auto;
+                //margin-top: .24rem;
+            }
+        }
+        .title-text{
+            text-align: center;
+            color: #fff;
+            margin-left: .5rem;
+            float: left;
+            @include font-dpr(18px, 1.33rem);
+        }
+        .search-btn{
+            float: right;
+            padding-top: .1733rem;
+            margin-right: .466rem;
+            img {
+                width: 1rem;
+                height: 1rem;
+            }
+
+        }
+    }
+
+    .container{
+        width: 100%;
+        width: 100vw;
+        .part-init-page{
+            width: 100%;
+            margin-top: 1.2rem;
+        }
+        .select-phone-type-page{
+            width: 100%;
+            
+        }
+    }
+    .banner-box{
+        width: 100%;
+        text-align: center;
+        margin-bottom: .8rem;
+        .banner-img{
+            width: 52%;
+            height: auto;
+        }
+    }
+    p.ex-txt{
+        width: 100%;
+        @include font-dpr(18px, 1.333rem);
+        text-align: center;
+        color: #000;
+    }
+    .inp-item-box{
+        height: 1.1rem;
+        width: 90%;
+        margin: 0px auto;
+        border-bottom: .02rem solid #e0e0e0;
+        
+        input {
+            height: 1rem;
+            border: none;
+            @include font-dpr(16px, 1rem);
+            padding-left: 2%;
+            padding-right: 2%;
+            color: #e0e0e0;
+            float: left;
+        }
+        .inp-item-init{
+            display: inline-block;
+            height: 1rem;
+            line-height: 1rem;
+            padding-right: 2%;
+            float: left;
+        }
+        .init-phone-type{
+            width: 42%;
+            @include font-dpr(16px, 1.1rem);
+            text-align: right;
+            color: #e0e0e0;
+        }
+        .init-verify-code{
+            width: 21%;
+            text-align: right;
+
+            img {
+                width: 100%;
+                height: auto;
+                margin-top: .2rem; 
+            }
+        }
+    }
+    .phone-type{
+        margin-top: .52rem;
+        input {
+            width: 50%;
+        }
+    }
+    .verify-box{
+        margin-top: .26rem;
+        input {
+            width: 70%;
+        }
+    }
+
+    .btn-box{
+        width: 90%;
+         margin: 0px auto;
+            margin-top: .8rem;
+        .btn {
+            width: 100%;
+            border: .02rem solid #e0e0e0;
+            border-radius: .10rem;
+            color: #000;
+            text-align: center;
+            @include font-dpr(18px, 1.33rem);
+            display: block;
+           
+        }
+    }
+    .phone-type-box{
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+        .type-item{
+            width: 100%;
+            height: 1.33rem;
+            padding-left: .33rem;
+            border-bottom: .02rem solid #e0e0e0;
+            span{
+                display: inline-block;
+                height: 1.33rem;
+                line-height: 1.33rem;
+                float: left;
+                
+            }
+        }
+    }
+    .checked{
+        background: url(/static/app_service/ic_done.png) no-repeat 0 center;
+    }
+    .item-txt{
+        width: 85%;
+        @include font-dpr(16px, 1.33rem);
+        color: #212121;
+    }
+    .is-checked{
+        width: 15%;
+        text-align: left;
+    }
+}
+@include app-partprict-page;

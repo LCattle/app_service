@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>zs_svg_back</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="bg5" transform="translate(-1787.000000, -264.000000)"></g>
+        <g id="4_baoyang-" transform="translate(-20.000000, -40.000000)">
+            <rect id="Rectangle" fill="#FFFFFF" x="0" y="0" width="360" height="640"></rect>
+            <g id="状态栏与标题栏">
+                <polygon id="app-bar-bg" fill="#505FEB" points="360 0 0 0 0 80 360 80"></polygon>
+                <g id="zs_svg_back" transform="translate(20.000000, 40.000000)">
+                    <g id="Group-23" transform="translate(2.500000, 5.000000)" fill="#FFFFFF">
+                        <polygon id="Combined-Shape" points="2 6.25 19 6.25 19 7.75 2 7.75"></polygon>
+                        <path d="M2.1157423,7.00507908 L7.96015511,1.16066628 L6.89949494,0.100006104 L-7.46069873e-14,6.99950104 L0.00557803995,7.00507908 L-5.41788836e-14,7.01065712 L6.89949494,13.9101521 L7.96015511,12.8494919 L2.1157423,7.00507908 Z" id="Combined-Shape"></path>
+                    </g>
+                    <polygon points="0 0 24 0 24 24 0 24"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
