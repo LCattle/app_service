@@ -183,6 +183,21 @@
             border: none;
             padding-left: 2%;
             padding-right: 2%;
+    }
+    .btn-box{
+        width: 9.2rem;
+        height: 1.33rem;
+        margin: 0px auto;
+        text-align: center;
+        .btn{
+            background: #c1c3c3;
+            display: inline-block;
+            width: 100%;
+            height: 1.33rem;
+            border-radius: .040rem;
+            color: #5d5d5d;
+        @include font-dpr(16px, 1.33rem);
         }
+    }
 }
 @include app-examine-page;

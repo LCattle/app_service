@@ -30,7 +30,8 @@ let controls = {
                     number = '',
                     subAnswerHtml = '',
                     sInputHtml = '',
-                    answerHtml = '';
+                    answerHtml = '',
+                    twoLevelAnswerCode = '';
                 // 一级答案
                 for (let j = 0; j < answers.length; j++) {
                     // 二级答案
@@ -46,12 +47,15 @@ let controls = {
                         // 填充输入框
                         answerHtml = _t._inputCause();
                     }
-                    subAnswerHtml += _t._answer(answersItem.widgetType, number, answersItem.valueName, answerHtml);
+                    console.log('-----------------');
+                    console.log(answersItem.widgetCode);
+                    twoLevelAnswerCode = answersItem.widgetCode ? answersItem.widgetCode : null;
+                    subAnswerHtml += _t._answer(answersItem.widgetType, number, twoLevelAnswerCode, answersItem.valueName, answerHtml);
 
 
                 }
                 // 题目数据填充
-                let quseItem = _t._quseItem(id, (i + 1), tempItem.widgetName, subAnswerHtml);
+                let quseItem = _t._quseItem(id, (i + 1), tempItem.widgetCode, tempItem.widgetName, subAnswerHtml);
                 $('.ques-items-box').append(quseItem);
                 subAnswerHtml = null;
                 _t._initEvent();
@@ -64,7 +68,7 @@ let controls = {
     _inputCause: function () {
         return `
             <p class="inp-cause-box hide">
-                            <input class="inp-cause" type="text" placeholder="请填写其他原因">
+                <input class="inp-cause" type="text" placeholder="请填写其他原因">
             </p>
         `;
     },
@@ -74,21 +78,20 @@ let controls = {
     _selectInput: function (itemsHtml) {
         return `
             <ul class="select-items-box hide">
-                            <li class="select-inp-item">
-                                <input class="inp-cause" type="text" placeholder="请选择或者填写不满意原因">
-                            </li>
-                            ${ itemsHtml}
-                            
-                        </ul>
+                <li class="select-inp-item">
+                    <input class="inp-cause" type="text" placeholder="请选择或者填写不满意原因">
+                </li>
+                ${ itemsHtml}
+            </ul>
         `;
     },
     /**
      * 添加一级答案
      */
-    _quseItem: function (type, idx, quseTip, answer_html) {
+    _quseItem: function (type, idx, code, quseTip, answer_html) {
         return `
             <li class="ques-item">
-                <span class="ques-txt" data-type="${type}" > ${idx}、 ${quseTip} </span>
+                <span class="ques-txt" data-code="${ code ? code : '' }" data-type="${ type ? type : '' }" > ${idx}、 ${quseTip} </span>
                 <div class="answer-box">
                         ${ answer_html}
                 </div>
@@ -98,12 +101,12 @@ let controls = {
     /**
      * 添加二级答案
      */
-    _answer: function (subId, orderNumber, answerTxt, otherAnswer) {
+    _answer: function (subId, orderNumber, code, answerTxt, otherAnswer) {
         return `
         <div class="answer-item-box">
-            <span class="answer-txt-icon" data-type="${ subId}">
-                    <span class="icon"></span>
-                    <span class="answer-txt">${ orderNumber}.${answerTxt}</span>
+            <span class="answer-txt-icon" data-code="${ code ? code : '' }" data-type="${ subId ? subId : ''}">
+                <span class="icon"></span>
+                <span class="answer-txt">${ orderNumber}.${answerTxt}</span>
             </span>
              ${ otherAnswer}
             </div>
@@ -111,49 +114,49 @@ let controls = {
     },
     _initEvent: function () {
         $('.answer-txt-icon').unbind('click').on('click', function () {
-        let self = this;
-        let iconDom = $(self).children('.icon'),
-            questionType = $(self).parents('.ques-item').find('.ques-txt').attr('data-type'),
-            answerType = $(self).attr('data-type'),
-            inpAnswerBox = $(self).siblings('.inp-cause-box'),
-            selectAnswerBox = $(self).siblings('.select-items-box');
-        if ($(self).hasClass('clicked')) {
-            iconDom.removeClass('checked');
-            $(self).removeClass('clicked');
-            inpAnswerBox.slideUp(500);
-            selectAnswerBox.slideUp(500);
-            return;
-        }
-        $(self).addClass('clicked');
-        // 设置ICON
-        iconDom.addClass('checked');
-        // 判断是否为单选多选（建议在渲染的时候添加类别）          
-        if (questionType == 1) {
-            console.log('单选');
-            $(self).parents('.answer-box').find('.answer-txt-icon').children('.icon').removeClass('checked');
-            $(self).parents('.answer-box').find('.answer-txt-icon').removeClass('clicked');
-            iconDom.addClass('checked');
+            let self = this;
+            let iconDom = $(self).children('.icon'),
+                questionType = $(self).parents('.ques-item').find('.ques-txt').attr('data-type'),
+                answerType = $(self).attr('data-type'),
+                inpAnswerBox = $(self).siblings('.inp-cause-box'),
+                selectAnswerBox = $(self).siblings('.select-items-box');
+            if ($(self).hasClass('clicked')) {
+                iconDom.removeClass('checked');
+                $(self).removeClass('clicked');
+                inpAnswerBox.slideUp(500);
+                selectAnswerBox.slideUp(500);
+                return;
+            }
             $(self).addClass('clicked');
-        } else if (questionType == 2) {
-            // 多选
+            // 设置ICON
             iconDom.addClass('checked');
-            $(self).addClass('clicked');
-        }
+            // 判断是否为单选多选（建议在渲染的时候添加类别）          
+            if (questionType == 1) {
+                console.log('单选');
+                $(self).parents('.answer-box').find('.answer-txt-icon').children('.icon').removeClass('checked');
+                $(self).parents('.answer-box').find('.answer-txt-icon').removeClass('clicked');
+                iconDom.addClass('checked');
+                $(self).addClass('clicked');
+            } else if (questionType == 2) {
+                // 多选
+                iconDom.addClass('checked');
+                $(self).addClass('clicked');
+            }
 
-        // 判断答案是否可以填写或者下拉
-        if (answerType == 3){
-            inpAnswerBox.slideDown(500);
-        } else if (answerType == 4) {
-            selectAnswerBox.slideDown(500);
-            let selectInputDom = selectAnswerBox.find('.inp-cause');
-            $('.select-item').unbind('click').on('click', function () {
-                let that = this;
-                let checkTxt = $(that).attr('data-txt');
-                selectInputDom.val(checkTxt);
-            });
-        }
+            // 判断答案是否可以填写或者下拉
+            if (answerType == 3) {
+                inpAnswerBox.slideDown(500);
+            } else if (answerType == 4) {
+                selectAnswerBox.slideDown(500);
+                let selectInputDom = selectAnswerBox.find('.inp-cause');
+                $('.select-item').unbind('click').on('click', function () {
+                    let that = this;
+                    let checkTxt = $(that).attr('data-txt');
+                    selectInputDom.val(checkTxt);
+                });
+            }
 
-    });
+        });
     }
 
 };
