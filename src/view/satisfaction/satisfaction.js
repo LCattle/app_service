@@ -5,7 +5,7 @@ import Control from './questions_control';
 Control._init(questions);
 
 
-; (function ($) {
+/*; (function ($) {
     $('.answer-txt-icon').unbind('click').on('click', function () {
         let self = this;
         let iconDom = $(self).children('.icon'),
@@ -51,4 +51,4 @@ Control._init(questions);
 
     });
 
-})(jQuery);
+})(jQuery);*/
