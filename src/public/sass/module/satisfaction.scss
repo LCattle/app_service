@@ -90,6 +90,7 @@
             margin: 0px auto;
             padding-top: .52rem;
             padding-bottom: .52rem;
+
         }
     }
     .ques-item{
@@ -147,10 +148,14 @@
             background: #f2f4f4;
             margin-top: .26rem;
             padding-top: .12rem;
-            padding-bottom: .26rem;
+            //padding-bottom: .26rem;
             margin-bottom: .52rem;
+            .slide-box{
+                height: auto;
+                overflow: hidden;
+            }
             .select-item{
-                 display: block;
+                display: inline-block;
                 width: 90%;
                 height: .63rem;
                 color: #5d5d5d;
@@ -163,9 +168,20 @@
             .select-inp-item{
                 border-bottom: .010rem solid #d9dbdb;
                 padding-bottom: .05rem;
+                position: relative;
                 .inp-cause{
                     padding-left: 4%;
                     width: 94%;
+                }
+                .select-icon{
+                    display: block;
+                    width: 0px;
+                    height: 0px;
+                    position: absolute;
+                    right: .42rem;
+                    top: .08rem;
+                    border: .21rem solid transparent;
+                    border-top: .21rem solid #6d6d6d;
                 }
             }
         }
