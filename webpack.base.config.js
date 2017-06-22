@@ -9,7 +9,6 @@ module.exports = {
     'findparts': ['./src/view/findparts/findparts'],
     'examine': ['./src/view/examine/examine'],
     'satisfaction': ['./src/view/satisfaction/satisfaction'],
-    'productreseach': ['./src/view/productreseach/productreseach']
   },
   output: {
     path: __dirname + '/build',
