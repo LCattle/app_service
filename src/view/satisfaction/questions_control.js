@@ -96,7 +96,7 @@ let controls = {
     _quseItem: function (type, idx, code, quseTip, chooseType, answer_html) {
         return `
             <li class="ques-item" data-type="${ type ? type : ''}">
-                <span class="ques-txt" data-code="${ code ? code : ''}" data-type="${type ? type : ''}" > ${idx}、 ${quseTip}?（${ chooseType }） </span>
+                <span class="ques-txt" data-code="${ code ? code : ''}" data-type="${type ? type : ''}" > ${idx}、 ${quseTip}?（${chooseType}） </span>
                 <div class="answer-box">
                         ${ answer_html}
                 </div>
@@ -125,14 +125,36 @@ let controls = {
                 answerType = $(self).attr('data-type'),
                 inpAnswerBox = $(self).siblings('.inp-cause-box'),
                 selectAnswerBox = $(self).siblings('.select-items-box'),
-                parentsBox = $(self).parents('.ques-item');
+                parentsBox = $(self).parents('.ques-item'),
+                type = parentsBox.attr('data-type');
+            let isChecked = true;
             if ($(self).hasClass('clicked')) {
                 iconDom.removeClass('checked');
                 $(self).removeClass('clicked');
-                 parentsBox.removeClass('answer-checked');
+                if (type == 2) {
+                    let isChecked = parentsBox.attr('data-checked-mutch');
+                    if (isChecked) {
+                        let c = isChecked.replace('checked', '');
+                        parentsBox.attr('data-checked-mutch', c);
+                        if (!c) {
+                            parentsBox.removeClass('answer-checked');
+                        }
+                    } /*else {
+                        parentsBox.removeClass('answer-checked');
+                    }*/
+                } else if (type == 1) {
+                    parentsBox.removeClass('answer-checked');
+                }
                 inpAnswerBox.slideUp(500);
                 selectAnswerBox.slideUp(500);
                 return;
+            }
+            if (type == 2) {
+                let checked = 'checked'
+                if (parentsBox.attr('data-checked-mutch')) {
+                    checked += checked;
+                }
+                parentsBox.attr('data-checked-mutch', checked);
             }
             $(self).addClass('clicked');
             parentsBox.addClass('answer-checked');
@@ -181,6 +203,10 @@ let controls = {
             let isSubmit = false;
             quesItems.each(function () {
                 let _it = $(this);
+                let type = _it.attr('data-type')
+                /*if () {
+
+                }*/
                 if (_it.hasClass('answer-checked')) {
                     isSubmit = true;
                 } else {
@@ -192,9 +218,9 @@ let controls = {
                 return;
             }
             let answers = {
-            examCode: 'aaaaa',
-            answers: []
-        };
+                examCode: 'aaaaa',
+                answers: []
+            };
             // 获取编号 答案
             // 获取子编号 答案
             let quesItemBox = $('.ques-item');
@@ -208,9 +234,9 @@ let controls = {
                 const _s = $(this);
                 code = _s.attr('data-code');
                 valName = '';
-               // valName = quesItemBox.find('span.clicked').children('.answer-txt').attr('data-txt');
-               valName = _s.siblings('.answer-box').children('.answer-item-box')
-                                .children('.clicked').children('.answer-txt').attr('data-txt');
+                // valName = quesItemBox.find('span.clicked').children('.answer-txt').attr('data-txt');
+                valName = _s.siblings('.answer-box').children('.answer-item-box')
+                    .children('.clicked').children('.answer-txt').attr('data-txt');
                 if (valName) {
                     answers.answers.push({
                         widgetCode: code,
@@ -237,7 +263,7 @@ let controls = {
             });
 
             // 下拉填写
-            
+
             quesItemBox.find('.answer-item-box').find('.clicked').each(function () {
                 let _c = $(this);
                 code = _c.attr('data-code');
