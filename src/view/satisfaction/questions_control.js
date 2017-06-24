@@ -201,22 +201,22 @@ let controls = {
         $('.submit-btn').unbind('click').on('click', function () {
             let quesItems = $('.ques-item');
             let isSubmit = false;
-            quesItems.each(function () {
+            let quesLen = quesItems.length;
+            let count = 0;
+            quesItems.each(function (i) {
                 let _it = $(this);
                 let type = _it.attr('data-type')
-                /*if () {
-
-                }*/
                 if (_it.hasClass('answer-checked')) {
-                    isSubmit = true;
-                } else {
-                    isSubmit = false;
-                }
+                    count++;
+                }   
+               
+                
             })
-            if (!isSubmit) {
-                alert('抱歉，所有题目都为必填！');
-                return;
-            }
+           if (count !== quesLen) {
+               alert('抱歉，所有的问题都为必选！');
+            return;
+           }
+            
             let answers = {
                 examCode: 'aaaaa',
                 answers: []
